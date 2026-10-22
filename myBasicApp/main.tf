@@ -75,7 +75,7 @@ resource "aws_route_table_association" "PublicRTassociation2" {
 resource "aws_instance" "myInstance1" {
 
   ami                    = "ami-06259b63260eddc13"
-  instance_type          = "t2.micro"
+  instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.InstanceSG.id]
   subnet_id              = aws_subnet.mySubnet1.id
 
@@ -94,7 +94,7 @@ resource "aws_instance" "myInstance1" {
 resource "aws_instance" "myInstance2" {
 
   ami                    = "ami-06259b63260eddc13"
-  instance_type          = "t2.micro"
+  instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.InstanceSG.id]
   subnet_id              = aws_subnet.mySubnet2.id
 
