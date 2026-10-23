@@ -6,8 +6,20 @@ terraform {
       version = "~> 6.0"
 
     }
+  } // backend needs to be in inside the terraform block
+
+  backend "s3" {
+    bucket       = "zeyad-terraform-state-files"
+    key          = "myBasicApp/terraform.tfstate"
+    region       = "ap-southeast-2"
+    encrypt      = true // encrypts data for protection
+    use_lockfile = true //  this lock files to protect against conflicts during operations 
   }
+
+
 }
+
+
 
 
 data "aws_availability_zones" "available" {
@@ -18,6 +30,8 @@ provider "aws" {
 
   region = "ap-southeast-2"
 }
+
+
 
 resource "aws_vpc" "myVPC" {
 
